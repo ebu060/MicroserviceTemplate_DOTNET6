@@ -25,19 +25,21 @@ namespace Catalog.Infrastructure.Repositories
             return product;
         }
 
-        public Task<bool> DeleteProduct(string id)
+        public async Task<bool> DeleteProduct(string id)
         {
-            throw new NotImplementedException();
+            FilterDefinition<Product> filterDefinition = Builders<Product>.Filter.Eq(p => p.Id, id);
+            DeleteResult deleteResult = await _context.Products.DeleteOneAsync(filterDefinition);
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
 
-        public Task<IEnumerable<ProductBrand>> GetAllBrands()
+        public async Task<IEnumerable<ProductBrand>> GetAllBrands()
         {
-            throw new NotImplementedException();
+            return await _context.Brands.Find(b => true).ToListAsync();
         }
 
-        public Task<IEnumerable<ProductType>> GetAllTypes()
+        public async Task<IEnumerable<ProductType>> GetAllTypes()
         {
-            throw new NotImplementedException();
+            return await _context.Types.Find(t => true).ToListAsync();
         }
 
         public async Task<Product> GetProduct(string id)
@@ -62,9 +64,11 @@ namespace Catalog.Infrastructure.Repositories
             return await _context.Products.Find(p => true).ToListAsync();
         }
 
-        public Task<Product> UpdateProduct(Product product)
+        public async Task<bool> UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            var updateResult = await _context.Products.ReplaceOneAsync(p => p.Id == product.Id, product);
+
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }
     }
 }

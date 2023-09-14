@@ -19,7 +19,7 @@ namespace Catalog.Core.Entities
 
         [BsonRepresentation(MongoDB.Bson.BsonType.Decimal128)]
         public Decimal Price { get; set; }
-
     }
 
+    
 }
