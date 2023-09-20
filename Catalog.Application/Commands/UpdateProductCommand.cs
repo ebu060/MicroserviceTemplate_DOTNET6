@@ -1,15 +1,19 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using Catalog.Core.Entities;
+using MediatR;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog.Core.Entities
+namespace Catalog.Application.Commands
 {
-    public class Product:BaseEntity
+    public class UpdateProductCommand:IRequest<bool>
     {
-
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
         public string Summary { get; set; }
@@ -17,10 +21,6 @@ namespace Catalog.Core.Entities
         public string ImageFıle { get; set; }
         public ProductBrand Brands { get; set; }
         public ProductType Types { get; set; }
-
-        [BsonRepresentation(MongoDB.Bson.BsonType.Decimal128)]
         public Decimal Price { get; set; }
     }
-
-    
 }

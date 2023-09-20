@@ -12,7 +12,7 @@ namespace Catalog.Application.Handlers
 {
     public class GetProductByNameHandler : IRequestHandler<GetProductByNameQuery, IList<ProductResponse>>
     {
-        public IProductRepository _productRepository { get; }
+        private readonly IProductRepository _productRepository;
         public GetProductByNameHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;
@@ -20,7 +20,7 @@ namespace Catalog.Application.Handlers
 
         public async Task<IList<ProductResponse>> Handle(GetProductByNameQuery request, CancellationToken cancellationToken)
         {
-            var productList = _productRepository.GetProductByName(request.Name);
+            var productList = await _productRepository.GetProductByName(request.Name);
             return Mappers.ProductMapper.Mapper.Map<IList<ProductResponse>>(productList);
         }
     }
