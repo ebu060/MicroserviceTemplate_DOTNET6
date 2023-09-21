@@ -7,6 +7,6 @@ namespace Catalog.API.Controllers
     [ApiController]
     public class ApiController : ControllerBase
     {
-              
+
     }
 }
