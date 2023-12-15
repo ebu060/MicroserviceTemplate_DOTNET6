@@ -26,7 +26,7 @@ namespace Catalog.Application.Handlers
                 Description = request.Description,
                 Brands = request.Brands,
                 Types = request.Types,
-                ImageFıle = request.ImageFıle,
+                ImageFile = request.ImageFile,
                 Price = request.Price,
                 Summary = request.Summary
             });

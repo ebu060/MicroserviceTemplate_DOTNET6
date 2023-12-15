@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Basket.API/Basket.API.csproj", "Basket.API/"]
+COPY ["../Basket.Application/Basket.Application.csproj","Basket.Application/"]
+COPY ["../Basket.Core/Basket.Core.csproj","Basket.Core/"]
+COPY ["../Basket.Infrastructure/Basket.Infrastructure.csproj","Basket.Infrastructure/"]
 RUN dotnet restore "Basket.API/Basket.API.csproj"
 COPY . .
 WORKDIR "/src/Basket.API"

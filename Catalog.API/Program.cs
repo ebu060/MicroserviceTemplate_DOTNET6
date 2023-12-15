@@ -1,13 +1,12 @@
-using System.Reflection;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Catalog.Application.Handlers;
 using Catalog.Core.Repositories;
-using Catalog.Infrastructure.Data; 
+using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
+using HealthChecks.UI.Client;
 using MediatR;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
-using HealthChecks.UI.Client;
-using Catalog.Application.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;

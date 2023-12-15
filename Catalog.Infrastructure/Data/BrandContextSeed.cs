@@ -9,7 +9,8 @@ namespace Catalog.Infrastructure.Data
         public static void SeedData(IMongoCollection<ProductBrand> brandCollection)
         {
             bool CheckBrands = brandCollection.Find(b => true).Any();
-            string path = Path.Combine("Data", "SeedData", "brands.json");
+            string path = Path.Combine("Data", "SeedData", "brands.json"); //Docker
+            //string path = "../Catalog.Infrastructure/Data/SeedData/brands.json"; //IIS
             if (!CheckBrands)
             {
                 var brandsData = File.ReadAllText(path);
